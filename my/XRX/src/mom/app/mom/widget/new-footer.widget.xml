@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><xrx:widget xmlns:xrx="http://www.monasterium.net/NS/xrx" xmlns="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:i18n="http://www.monasterium.net/NS/i18n" xmlns:xf="http://www.w3.org/2002/xforms">
-  <xrx:id>tag:www.monasterium.net,2011:/mom/widget/default-footer</xrx:id>
+  <xrx:id>tag:www.monasterium.net,2011:/mom/widget/new-footer</xrx:id>
   <xrx:author>jochen.graf@uni-koeln.de</xrx:author>
   <xrx:licence>
 This is a component file of the VdU Software for a Virtual Research Environment for the handling of Medieval charters.
@@ -25,46 +25,6 @@ We expect VdU/VRET to be distributed in the future with a license more lenient t
   </xrx:licence>
   <xrx:csss>
     <style type="text/css">
-
-#default-footer a{{
-  color:white !important;
-}}
-#default-footer a:hover{{
-  color:{conf:param('color6')} !important;
-}}
-#default-footer{{
-	position:relative;
-	float:left;
-	width:100%;
-	background:{conf:param('color3')};
-	padding:0px;
-	margin:0px;
-}}
-#inner-default-footer{{
-  margin:20px;
-}}
-.dwhite-header *{{
-  font-size:18px;
-  font-weight:bold;
-  color:white;
-}}
-#dlogos{{
-  position:relative;
-  float:none;
-}}
-.dlogo{{
-  position:relative;
-  float:left;
-}}
-.dlogo, dwhite-header{{
-  margin-right:15px;
-  margin-bottom:20px;
-}}
-.dlogo img{{
-  border:none;
-  margin:0px;
-  padding:0px;
-}}
       </style>
     </xrx:csss>
     <xrx:model/>

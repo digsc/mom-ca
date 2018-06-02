@@ -165,6 +165,7 @@ declare function widget:compile-widget($app-name as xs:string,
                         else () 
                     } 
                     <link rel="stylesheet" type="text/css" href="/{ $project-name }/css/?atomid={ $widgetid }"/>
+                    <link rel="stylesheet" type="text/css" href="http://glossa.uni-graz.at/gamsdev/gschneider/mom-ui_git/public/css/main.css"/>
                     { 
                         if(not($javascript-debug)) then
                             if($widget/xrx:jss/xrx:resource or $jqueryflag) then 
@@ -214,6 +215,7 @@ declare function widget:compile-widget($app-name as xs:string,
                         else () 
                     }          
                     <link rel="stylesheet" type="text/css" href="/{ $project-name }/css/?atomid={ $widgetid }"/>
+                    <link rel="stylesheet" type="text/css" href="http://glossa.uni-graz.at/gamsdev/gschneider/mom-ui_git/public/css/main.css"/>
                     { 
                         if(not($javascript-debug)) then
                             if($widget/xrx:jss/xrx:resource or $jqueryflag) then 

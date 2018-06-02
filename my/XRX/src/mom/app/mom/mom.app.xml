@@ -219,6 +219,11 @@
     <xrx:map>
       <xrx:uripattern>/home$</xrx:uripattern>
       <xrx:mode>mainwidget</xrx:mode>
+      <xrx:atomid>tag:www.monasterium.net,2011:/mom/widget/home</xrx:atomid>
+    </xrx:map>
+    <xrx:map>
+      <xrx:uripattern>/new-home$</xrx:uripattern>
+      <xrx:mode>mainwidget</xrx:mode>
       <xrx:atomid>tag:www.monasterium.net,2011:/mom/widget/new-home</xrx:atomid>
     </xrx:map>
     <xrx:map>

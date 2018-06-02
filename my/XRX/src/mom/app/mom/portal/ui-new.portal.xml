@@ -29,11 +29,7 @@ We expect VdU/VRET to be distributed in the future with a license more lenient t
 	<xrx:view>
 		<div id="main">
 			<xrx:subwidget>tag:www.monasterium.net,2011:/mom/widget/new-header</xrx:subwidget>
-			<div id="content">
-				<div id="inner-content">
           <xrx:mainwidget/>
-				</div>
-			</div>
 			<xrx:subwidget>tag:www.monasterium.net,2011:/mom/widget/new-footer</xrx:subwidget>
 		</div>
 	</xrx:view>

@@ -129,6 +129,7 @@ declare function widget:compile-widget($app-name as xs:string,
         else
             false()
     let $jqueryflag := if($widget/xrx:init/xrx:processor/xrx:jqueryflag/text() = 'true') then true() else false()
+    let $bootstrapflag := if($widget/xrx:init/xrx:processor/xrx:bootstrapflag/text() = 'true') then true() else false()
     let $javascript-debug := if($widget/xrx:jss/@debug/string() = 'true') then true() else false()
     let $variables := $widget//xrx:variable
     let $variable-expression := widget:variable-expression($widget/xrx:variables)
@@ -164,8 +165,14 @@ declare function widget:compile-widget($app-name as xs:string,
                             <link rel="stylesheet" href="/{ $project-name }/jquery/themes/base/jquery.ui.all.css"/>
                         else () 
                     } 
+                    
+                    {    
+                        if($bootstrapflag) then
+                            <link rel="stylesheet" type="text/css" href="http://glossa.uni-graz.at/gamsdev/gschneider/mom-ui_git/public/css/main.css"/>
+                        else()
+                            
+                    }
                     <link rel="stylesheet" type="text/css" href="/{ $project-name }/css/?atomid={ $widgetid }"/>
-                    <link rel="stylesheet" type="text/css" href="http://glossa.uni-graz.at/gamsdev/gschneider/mom-ui_git/public/css/main.css"/>
                     { 
                         if(not($javascript-debug)) then
                             if($widget/xrx:jss/xrx:resource or $jqueryflag) then 
@@ -214,8 +221,13 @@ declare function widget:compile-widget($app-name as xs:string,
                             <link rel="stylesheet" href="/{ $project-name }/jquery/themes/base/jquery.ui.all.css"/>
                         else () 
                     }          
+                    {    
+                        if($bootstrapflag) then
+                            <link rel="stylesheet" type="text/css" href="http://glossa.uni-graz.at/gamsdev/gschneider/mom-ui_git/public/css/main.css"/>
+                        else()
+                            
+                    }
                     <link rel="stylesheet" type="text/css" href="/{ $project-name }/css/?atomid={ $widgetid }"/>
-                    <link rel="stylesheet" type="text/css" href="http://glossa.uni-graz.at/gamsdev/gschneider/mom-ui_git/public/css/main.css"/>
                     { 
                         if(not($javascript-debug)) then
                             if($widget/xrx:jss/xrx:resource or $jqueryflag) then 

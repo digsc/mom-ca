@@ -258,6 +258,7 @@
 			        <xs:element name="xformsflag" type="xs:boolean"/>
 			        <xs:element name="serializeas" type="xs:string"/>
 			        <xs:element name="jqueryflag" type="xs:boolean"/>
+			        <xs:element name="bootstrapflag" type="xs:boolean"/>
 			      </xs:choice>
 			    </xs:complexType>
 			  </xs:element>

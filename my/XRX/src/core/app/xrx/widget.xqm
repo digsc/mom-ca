@@ -160,19 +160,20 @@ declare function widget:compile-widget($app-name as xs:string,
                     (
                 <head>
                     <title>{{ if($xrx:mainwidget/xrx:title/xrx:i18n) then i18n:translate($xrx:mainwidget/xrx:title/xrx:i18n) else() }}{{ if($xrx:htdoc//xrx:i18n) then i18n:translate($xrx:htdoc//xrx:i18n) else() }}&#160;{{ string-join(subsequence($xrx:tokenized-uri, 1, count($xrx:tokenized-uri) - 1), '|') }}&#160;-&#160;{{ conf:param("platform-browser-title") }}</title>
-                    { 
-                        if($jqueryflag) then 
-                            <link rel="stylesheet" href="/{ $project-name }/jquery/themes/base/jquery.ui.all.css"/>
-                        else () 
-                    } 
-                    
-                    {    
+                    {
                         if($bootstrapflag) then
-                            <link rel="stylesheet" type="text/css" href="http://glossa.uni-graz.at/gamsdev/gschneider/mom-ui_git/public/css/main.css"/>
-                        else()
-                            
+                            (
+                            <link rel="stylesheet" type="text/css" href="http://glossa.uni-graz.at/gamsdev/gschneider/mom-ui_git/public/css/main.css"/>,
+                            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>,
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>,
+                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>)
+                        else(
+                            if($jqueryflag) then
+                            <link rel="stylesheet" href="/{ $project-name }/jquery/themes/base/jquery.ui.all.css"/>
+                            else (),       
+                            <link rel="stylesheet" type="text/css" href="/{ $project-name }/css/?atomid={ $widgetid }"/>
+                        )       
                     }
-                    <link rel="stylesheet" type="text/css" href="/{ $project-name }/css/?atomid={ $widgetid }"/>
                     { 
                         if(not($javascript-debug)) then
                             if($widget/xrx:jss/xrx:resource or $jqueryflag) then 
@@ -216,18 +217,19 @@ declare function widget:compile-widget($app-name as xs:string,
                 (
                 <head>
                     <title>{{ if($xrx:mainwidget/xrx:title/xrx:i18n) then i18n:translate($xrx:mainwidget/xrx:title/xrx:i18n) else() }}{{ if($xrx:htdoc//xrx:i18n) then i18n:translate($xrx:htdoc//xrx:i18n) else() }}&#160;{{ string-join(subsequence($xrx:tokenized-uri, 1, count($xrx:tokenized-uri) - 1), '|') }}&#160;-&#160;{{ conf:param("platform-browser-title") }}</title>
-                    { 
-                        if($jqueryflag) then
+                     {
+                        if($bootstrapflag) then (
+                            <link rel="stylesheet" type="text/css" href="http://glossa.uni-graz.at/gamsdev/gschneider/mom-ui_git/public/css/main.css"/>,
+                            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>,
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>,
+                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>)
+                        else(
+                            if($jqueryflag) then
                             <link rel="stylesheet" href="/{ $project-name }/jquery/themes/base/jquery.ui.all.css"/>
-                        else () 
-                    }          
-                    {    
-                        if($bootstrapflag) then
-                            <link rel="stylesheet" type="text/css" href="http://glossa.uni-graz.at/gamsdev/gschneider/mom-ui_git/public/css/main.css"/>
-                        else()
-                            
+                            else (),       
+                            <link rel="stylesheet" type="text/css" href="/{ $project-name }/css/?atomid={ $widgetid }"/>
+                        )       
                     }
-                    <link rel="stylesheet" type="text/css" href="/{ $project-name }/css/?atomid={ $widgetid }"/>
                     { 
                         if(not($javascript-debug)) then
                             if($widget/xrx:jss/xrx:resource or $jqueryflag) then 

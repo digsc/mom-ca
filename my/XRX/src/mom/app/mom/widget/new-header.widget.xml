@@ -24,9 +24,6 @@
             <xrx:jqueryflag>false</xrx:jqueryflag>
         </xrx:processor>
     </xrx:init>
-    <xrx:csss>
-        <style type="text/css"> </style>
-    </xrx:csss>
     <xrx:model> { if($xrx:xformsflag) then <xf:model id="mdefault-header">
             <xf:instance>
                 <xrx:data>
@@ -36,7 +33,7 @@
             <xf:instance id="iconfigured-langs">{ conf:param('languages') }</xf:instance>
             <xf:bind id="blang" nodeset="//xrx:lang"/>
         </xf:model> else() } </xrx:model>
-    <xrx:view> { let $register-link-div := <li class="nav-item" id="dregister-link">
+    <xrx:view> { let $register-link-item := <li class="nav-item" id="dregister-link">
             <xrx:auth>
                 <xrx:rules>
                     <xrx:rule>
@@ -56,7 +53,7 @@
                     </a>
                 </xrx:false>
             </xrx:auth>
-        </li> let $login-link-div := <li class="nav-item" id="dlogin-link"> { let $refer :=
+        </li> let $login-link-item := <li class="nav-item" id="dlogin-link"> { let $refer :=
             xmldb:encode(concat(request:get-uri(), '?',request:get-query-string())) return <span>
                 <xrx:auth>
                     <xrx:rules>
@@ -83,8 +80,8 @@
                         </a> </xrx:false>
                 </xrx:auth>
             </span> } </li> return <div class="container" id="header">
-            <div id="main-logo">
-                <a href="{ conf:param('request-root') }home">
+                <div id="main-logo">
+                    <a class="justify-content-center" href="{ conf:param('request-root') }home">
                     <xrx:resource alt="Monasterium Logo" type="image/jpg"
                         >tag:www.monasterium.net,2011:/mom/resource/image/mom-logo</xrx:resource>
                 </a>
@@ -113,9 +110,9 @@
                     <span/>
                 </xrx:false>
             </xrx:auth>
-            <nav class="navbar navbar-expand-lg">
+                <nav class="navbar navbar-expand-lg">
                 <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav justify-content-center">
                         <li class="nav-item">
                             <a class="nav-link" href="{ conf:param('request-root') }home">
                                 <xrx:i18n>
@@ -142,13 +139,20 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="searchDropdown"
-                                href="{ conf:param('request-root') }search">
+                                href="#">
                                 <xrx:i18n>
                                     <xrx:key>search</xrx:key>
                                     <xrx:default>Search</xrx:default>
                                 </xrx:i18n>
                             </a>
+                      
                             <div class="dropdown-menu" aria-labelledby="searchDropdown">
+                                <a class="dropdown-item" href="{ conf:param('request-root') }index">
+                                    <xrx:i18n>
+                                        <xrx:key>search</xrx:key>
+                                        <xrx:default>Search</xrx:default>
+                                    </xrx:i18n>
+                                </a>
                                 <a class="dropdown-item" href="{ conf:param('request-root') }index">
                                     <xrx:i18n>
                                         <xrx:key>index</xrx:key>
@@ -174,15 +178,14 @@
                             </a>
                         </li>
                     </ul>
-                    <xrx:div>demonstrator-menu-link</xrx:div> { if($xrx:xformsflag) then <div
-                        data-demoid="56201e27-24eb-4da5-bfee-3f14cacd4199" id="lang-select-form">
-                        <xf:group model="mdefault-header"> { $login-link-div } { $register-link-div
-                            } <span class="lang">
+                    <!--<xrx:div>demonstrator-menu-link</xrx:div>--> { if($xrx:xformsflag) then <ul class="navbar-nav xform"  id="lang-select-form">
+                        <xf:group model="mdefault-header"> { $login-link-item } { $register-link-item
+                            } <label class="lang">
                                 <xrx:i18n>
                                     <xrx:key>choose-a-language</xrx:key>
                                     <xrx:default>Choose a Language</xrx:default>
                                 </xrx:i18n>
-                            </span>
+                            </label>
                             <xf:select1 bind="blang" incremental="true">
                                 <xf:itemset nodeset="instance('iconfigured-langs')//xrx:lang">
                                     <xf:label ref="@name"/>
@@ -197,7 +200,7 @@
                                 </xf:action>
                             </xf:select1>
                         </xf:group>
-                    </div> else <ul class="navbar-nav"> { $login-link-div } { $register-link-div }
+                    </ul> else <ul class="navbar-nav"> { $login-link-item } { $register-link-item }
                             <form class="form-inline" method="get" name="langselect-form">
                             
                                 <label for="langSelect">

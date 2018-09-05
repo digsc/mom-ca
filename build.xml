@@ -37,6 +37,22 @@
    -->
   <property name="jquery-home" value="jQuery"/>
   <property name="my-jquery-src" value="my/XRX/res/jquery"/>
+  
+  <!-- Bootstrap tools urls ########## GS -->
+  
+  <!-- Bootstrap -->
+  
+  <property name="bootstrap-home" value="Bootstrap"/>
+  <property name="my-bootstrap-src" value="my/XRX/res/bootstrap"/>
+  
+  <!-- jQuery new -->
+  <property name="jquery-new-home" value="jQuery-new"/>
+  <property name="my-jquery-new-src" value="my/XRX/res/jquery-new"/>
+  
+  <!-- Popper -->
+  <property name="popper-home" value="Popper"/>
+  <property name="my-popper-src" value="my/XRX/res/popper"/>
+  
 
   <!-- 
     eXist 
@@ -320,8 +336,6 @@
     <echo message="-------------------------" />
     <antcall target="patch-my-betterform" />
     <antcall target="compile-betterform" />
-    
-
   </target>
   
   <target name="copy-betterform">
@@ -403,6 +417,165 @@
     <ant antfile="build-XRX.xml" dir="${betterform-home}/XRX" target="update-betterFORM-exploded"/>
     
     
+  </target>
+  
+  
+  <!-- Bootstrap and its tools ####### GS -->
+  
+  <target name="prepare-bootstrap-tools">
+    <echo message="-------------------------" />
+    <echo message="Preparing the Bootstrap tools" />
+    <echo message="-------------------------" />
+      <antcall target="copy-bootstrap-tools"/>
+      <antcall target="deploy-bootstrap-tools"/>
+  </target>
+  
+  <target name="copy-bootstrap-tools">
+    <echo message="-------------------------" />
+    <echo message="Copying the Bootstrap tools" />
+    <echo message="-------------------------" />
+    <antcall target="copy-bootstrap"/>
+    <antcall target="copy-jquery-new"/>
+    <antcall target="copy-popper"/>
+  </target>
+  
+  <target name="copy-bootstrap">
+    <echo message="-------------------------" />
+    <echo message="Copying Bootstrap" />
+    <echo message="-------------------------" />
+    <delete dir="${bootstrap-home}" failonerror="false"/>
+    <unzip src="vendor/Bootstrap-4.1.2.zip" dest=".">
+      <patternset>
+        <include name="**/dist/**"/>
+      </patternset>
+    </unzip>
+    <move todir="${bootstrap-home}">
+      <fileset dir="bootstrap-4.1.2"/>
+    </move>
+    <delete dir="bootstrap-4.1.2"/>
+  </target>
+  
+  <target name="copy-jquery-new">
+    <echo message="-------------------------" />
+    <echo message="Downloading jQuery new" />
+    <echo message="-------------------------" />
+    <delete dir="${jquery-new-home}" failonerror="false"/>
+    <unzip src="vendor/jQuery-3.3.1.zip" dest=".">
+      <patternset>
+        <include name="**/dist/**"/>
+      </patternset>
+    </unzip>
+    <move todir="${jquery-new-home}">
+      <fileset dir="jquery-3.3.1"/>
+    </move>
+    <delete dir="jquery-3.3.1"/>
+  </target>
+  
+  <target name="copy-popper">
+    <echo message="-------------------------" />
+    <echo message="Copying Popper" />
+    <echo message="-------------------------" />
+    <delete dir="${popper-home}" failonerror="false"/>
+    <unzip src="vendor/Popper-1.14.3.zip" dest=".">
+      <patternset>
+        <include name="**/dist/**"/>
+      </patternset>
+    </unzip>
+    <move todir="${popper-home}">
+      <fileset dir="popper.js-1.14.3"/>
+    </move>
+    <delete dir="popper.js-1.14.3"/>
+  </target>
+  
+  <target name="deploy-bootstrap-tools">
+    <echo message="-------------------------" />
+    <echo message="Deploying the bootstrap tools" />
+    <echo message="-------------------------" />
+   <!-- <antcall target="prepare-xrx-res-external-collection"/>-->
+    <antcall target="deploy-bootstrap"/>
+    <antcall target="deploy-jquery-new"/>
+    <antcall target="deploy-popper"/>
+  </target>
+  
+  <!-- TODO prepare external collection -->
+   
+  <target name="deploy-bootstrap" depends="exist-classpath">
+    <echo message="-------------------------" />
+    <echo message="Deploying Bootstrap" />
+    <echo message="-------------------------" />
+    
+    <xdb:remove xmlns:xdb="http://exist-db.org/ant"
+      uri="${xrx-res-xmldb-uri}" 
+      collection="bootstrap"
+      user="admin"
+      password="${XRX.password}"/>
+    <sleep seconds="2"/>
+    
+    <xdb:store xmlns:xdb="http://exist-db.org/ant"
+      uri="${xrx-res-xmldb-uri}/bootstrap"
+      createsubcollections="true" 
+      createcollection="true" 
+      user="admin"
+      password="${XRX.password}"
+      permissions="rwxr-xr-x">
+      <fileset dir="${bootstrap-home}">
+        <include name="*.*"/>
+        <include name="dist/css/**"/>
+        <include name="dist/js/**"/>
+      </fileset>
+    </xdb:store>
+  </target>
+  
+  <target name="deploy-jquery-new" depends="exist-classpath">
+    <echo message="-------------------------" />
+    <echo message="Deploying jQuery new" />
+    <echo message="-------------------------" />
+    
+    <xdb:remove xmlns:xdb="http://exist-db.org/ant"
+      uri="${xrx-res-xmldb-uri}" 
+      collection="jquery-new"
+      user="admin"
+      password="${XRX.password}"/>
+    <sleep seconds="2"/>
+    
+    <xdb:store xmlns:xdb="http://exist-db.org/ant"
+      uri="${xrx-res-xmldb-uri}/jquery-new"
+      createsubcollections="true" 
+      createcollection="true" 
+      user="admin"
+      password="${XRX.password}"
+      permissions="rwxr-xr-x">
+      <fileset dir="${jquery-new-home}">
+        <include name="*.*"/>
+        <include name="dist/**"/>
+      </fileset>
+    </xdb:store>
+  </target>
+  
+  <target name="deploy-popper" depends="exist-classpath">
+    <echo message="-------------------------" />
+    <echo message="Deploying Popper" />
+    <echo message="-------------------------" />
+    
+    <xdb:remove xmlns:xdb="http://exist-db.org/ant"
+      uri="${xrx-res-xmldb-uri}" 
+      collection="popper"
+      user="admin"
+      password="${XRX.password}"/>
+    <sleep seconds="2"/>
+    
+    <xdb:store xmlns:xdb="http://exist-db.org/ant"
+      uri="${xrx-res-xmldb-uri}/popper"
+      createsubcollections="true" 
+      createcollection="true" 
+      user="admin"
+      password="${XRX.password}"
+      permissions="rwxr-xr-x">
+      <fileset dir="${popper-home}">
+        <include name="*.*"/>
+        <include name="dist/**"/>
+      </fileset>
+    </xdb:store>
   </target>
 
   <!-- 
@@ -852,7 +1025,7 @@ wrapper.java.additional.6=-Djava.io.tmpdir=../../../tools/jetty/tmp
       password="${XRX.password}"/>
   
   </target>
-  
+    
   <target name="init-user" depends="start, exist-classpath" description="creates initial user">
     
     <echo message="-------------------------"/>

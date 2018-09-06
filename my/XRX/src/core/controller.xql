@@ -57,6 +57,21 @@ else if(starts-with($exist:path, '/codemirror/')) then
     <forward url="{ $xrx-relative-path }../XRX.res/codemirror{ substring-after($exist:path, 'codemirror') }"/>
 </dispatch>
 
+else if(starts-with($exist:path, '/bootstrap/')) then
+<dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+    <forward url="{ $xrx-relative-path }../XRX.res/bootstrap{ substring-after($exist:path, 'bootstrap') }"/>
+</dispatch>
+
+else if(starts-with($exist:path, '/jquery-new/')) then
+<dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+    <forward url="{ $xrx-relative-path }../XRX.res/jquery-new{ substring-after($exist:path, 'jquery-new') }"/>
+</dispatch>
+
+else if(starts-with($exist:path, '/popper/')) then
+<dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+    <forward url="{ $xrx-relative-path }../XRX.res/popper{ substring-after($exist:path, 'popper') }"/>
+</dispatch>
+
 else if(starts-with($exist:path, '/font/')) then
 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
     <forward url="{ concat('../res/font/', $exist:resource) }"/>

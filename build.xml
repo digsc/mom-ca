@@ -38,16 +38,16 @@
   <property name="jquery-home" value="jQuery"/>
   <property name="my-jquery-src" value="my/XRX/res/jquery"/>
   
-  <!-- Bootstrap tools urls ########## GS -->
+  <!-- Bootstrap tools urls -->
   
   <!-- Bootstrap -->
   
   <property name="bootstrap-home" value="Bootstrap"/>
   <property name="my-bootstrap-src" value="my/XRX/res/bootstrap"/>
   
-  <!-- jQuery new -->
-  <property name="jquery-new-home" value="jQuery-new"/>
-  <property name="my-jquery-new-src" value="my/XRX/res/jquery-new"/>
+  <!-- jQuery bootstrap -->
+  <property name="jquery-bootstrap-home" value="jQuery-bootstrap"/>
+  <property name="my-jquery-bootstrap-src" value="my/XRX/res/jquery-bootstrap"/>
   
   <!-- Popper -->
   <property name="popper-home" value="Popper"/>
@@ -420,7 +420,7 @@
   </target>
   
   
-  <!-- Bootstrap and its tools ####### GS -->
+  <!-- Bootstrap and its tools -->
   
   <target name="prepare-bootstrap-tools">
     <echo message="-------------------------" />
@@ -435,7 +435,7 @@
     <echo message="Copying the Bootstrap tools" />
     <echo message="-------------------------" />
     <antcall target="copy-bootstrap"/>
-    <antcall target="copy-jquery-new"/>
+    <antcall target="copy-jquery-bootstrap"/>
     <antcall target="copy-popper"/>
   </target>
   
@@ -455,17 +455,17 @@
     <delete dir="bootstrap-4.1.2"/>
   </target>
   
-  <target name="copy-jquery-new">
+  <target name="copy-jquery-bootstrap">
     <echo message="-------------------------" />
-    <echo message="Downloading jQuery new" />
+    <echo message="Downloading jQuery bootstrap" />
     <echo message="-------------------------" />
-    <delete dir="${jquery-new-home}" failonerror="false"/>
+    <delete dir="${jquery-bootstrap-home}" failonerror="false"/>
     <unzip src="vendor/jQuery-3.3.1.zip" dest=".">
       <patternset>
         <include name="**/dist/**"/>
       </patternset>
     </unzip>
-    <move todir="${jquery-new-home}">
+    <move todir="${jquery-bootstrap-home}">
       <fileset dir="jquery-3.3.1"/>
     </move>
     <delete dir="jquery-3.3.1"/>
@@ -491,13 +491,10 @@
     <echo message="-------------------------" />
     <echo message="Deploying the bootstrap tools" />
     <echo message="-------------------------" />
-   <!-- <antcall target="prepare-xrx-res-external-collection"/>-->
     <antcall target="deploy-bootstrap"/>
-    <antcall target="deploy-jquery-new"/>
+    <antcall target="deploy-jquery-bootstrap"/>
     <antcall target="deploy-popper"/>
   </target>
-  
-  <!-- TODO prepare external collection -->
    
   <target name="deploy-bootstrap" depends="exist-classpath">
     <echo message="-------------------------" />
@@ -526,26 +523,26 @@
     </xdb:store>
   </target>
   
-  <target name="deploy-jquery-new" depends="exist-classpath">
+  <target name="deploy-jquery-bootstrap" depends="exist-classpath">
     <echo message="-------------------------" />
-    <echo message="Deploying jQuery new" />
+    <echo message="Deploying jQuery bootstrap" />
     <echo message="-------------------------" />
     
     <xdb:remove xmlns:xdb="http://exist-db.org/ant"
       uri="${xrx-res-xmldb-uri}" 
-      collection="jquery-new"
+      collection="jquery-bootstrap"
       user="admin"
       password="${XRX.password}"/>
     <sleep seconds="2"/>
     
     <xdb:store xmlns:xdb="http://exist-db.org/ant"
-      uri="${xrx-res-xmldb-uri}/jquery-new"
+      uri="${xrx-res-xmldb-uri}/jquery-bootstrap"
       createsubcollections="true" 
       createcollection="true" 
       user="admin"
       password="${XRX.password}"
       permissions="rwxr-xr-x">
-      <fileset dir="${jquery-new-home}">
+      <fileset dir="${jquery-bootstrap-home}">
         <include name="*.*"/>
         <include name="dist/**"/>
       </fileset>
@@ -612,6 +609,9 @@
     <antcall target="copy-jssaxparser"/>
     <antcall target="copy-jquery"/>
     <antcall target="copy-codemirror"/>
+    <antcall target="copy-bootstrap"/>
+    <antcall target="copy-jquery-bootstrap"/>
+    <antcall target="copy-popper"/>
     
     <!-- compile and deploy -->
     <antcall target="compile-exist" />
@@ -623,6 +623,9 @@
     <delete dir="CodeMirror"/>
     <delete dir="jQuery"/>
     <delete dir="jssaxparser"/>
+    <delete dir="Bootstrap"/>
+    <delete dir="jQuery-bootstrap"/>
+    <delete dir="Popper"/>
 
   </target>
 
@@ -870,6 +873,9 @@ wrapper.java.additional.6=-Djava.io.tmpdir=../../../tools/jetty/tmp
     <antcall target="deploy-jssaxparser"/>
     <antcall target="deploy-jquery"/>
     <antcall target="deploy-codemirror"/>
+    <antcall target="deploy-bootstrap"/>
+    <antcall target="deploy-jquery-bootstrap"/>
+    <antcall target="deploy-popper"/>
     
     <antcall target="compile-xrx-project"/>
     

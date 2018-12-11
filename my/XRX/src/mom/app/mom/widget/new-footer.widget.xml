@@ -20,71 +20,65 @@
 		the active development stage. </xrx:licence>
 	<xrx:model/>
 	<xrx:view>
-		<div class="container" id="footer">
-			<ul class="nav justify-content-center">
-				<li class="nav-item">
-					<a class="nav-link" href="http://icar-us.eu" target="_blank">
+		<footer class="container-fluid">
+			<div class="row">
+				<div class="col-md-9">
+					<a class="footer-logo" href="http://icar-us.eu" target="_blank">
 						<xrx:resource alt="ICARUS Logo" type="image/png"
 							>tag:www.monasterium.net,2011:/mom/resource/image/icarus-logo</xrx:resource>
 					</a>
-				</li>
-
-				<li class="nav-item">
-					<a class="nav-link" href="http://coop-project.eu/" target="_blank">
+					<a class="footer-logo" href="http://coop-project.eu/" target="_blank">
 						<xrx:resource alt="CO:OP Logo" type="image/png"
 							>tag:www.monasterium.net,2011:/mom/resource/image/coop-logo</xrx:resource>
 					</a>
-				</li>
-
-				<li class="nav-item">
-					<a class="nav-link" href="http://enarc.icar-us.eu/" target="_blank">
+					<a class="footer-logo" href="http://enarc.icar-us.eu/" target="_blank">
 						<xrx:resource alt="ENARC Logo" type="image/png"
 							>tag:www.monasterium.net,2011:/mom/resource/image/enarc-logo</xrx:resource>
 					</a>
-				</li>
-
-
-				<li class="nav-item">
-					<a class="nav-link" href="http://ec.europa.eu/culture/index_en.htm" target="_blank">
+					<a class="footer-logo" href="http://ec.europa.eu/culture/index_en.htm"
+						target="_blank">
 						<xrx:resource alt="EU Logo" type="image/png"
 							>tag:www.monasterium.net,2011:/mom/resource/image/eu-logo</xrx:resource>
 					</a>
-				</li>
-
-				<li class="nav-item">
-					<a class="nav-link" href="http://exist-db.org" target="_blank">
+					<a class="footer-logo" href="http://exist-db.org" target="_blank">
 						<xrx:resource alt="eXist Logo" type="image/gif"
 							>tag:www.monasterium.net,2011:/mom/resource/image/exist-logo</xrx:resource>
 					</a>
-				</li>
-
-
-				<li class="nav-item">
-					<a class="nav-link" href="http://betterform.de" target="_blank">
+					<a class="footer-logo" href="http://betterform.de" target="_blank">
 						<xrx:resource alt="betterFORM Logo" type="image/png"
 							>tag:www.monasterium.net,2011:/mom/resource/image/betterform-logo</xrx:resource>
 					</a>
-				</li>
-
-				<li class="nav-item">
-					<a class="nav-link" href="{ conf:param('request-root') }terms-of-use">
-						<xrx:i18n>
-							<xrx:key>terms-of-use</xrx:key>
-							<xrx:default>Terms of use</xrx:default>
-						</xrx:i18n>
+					<a class="footer-logo" href="https://ec.europa.eu/programmes/creative-europe/" target="_blank">
+						<xrx:resource alt="Co-funded by Creative Europe Logo" type="image/png">tag:www.monasterium.net,2011:/mom/resource/image/creative-europe-logo</xrx:resource>
 					</a>
-				</li>
-
-				<li class="nav-item">
-					<a class="nav-link" href="{ conf:param('request-root') }contact">
-						<xrx:i18n>
-							<xrx:key>contact</xrx:key>
-							<xrx:default>Contact</xrx:default>
-						</xrx:i18n>
+					<a class="footer-logo" href="http://www.noe.gv.at/noe/index.html" target="_blank">
+						<xrx:resource alt="Kultur Niederösterreich Logo" type="image/png">tag:www.monasterium.net,2011:/mom/resource/image/logo-kultur-niederoesterreich</xrx:resource>
 					</a>
-				</li>
-			</ul>
-		</div>
+					<a class="footer-logo" href="http://www.noe.gv.at/noe/index.html" target="_blank">
+						<xrx:resource alt="Wissenschaft Forschung Niederösterreich Logo" type="image/png">tag:www.monasterium.net,2011:/mom/resource/image/logo-wissenschaft-forschung-niederoesterreich</xrx:resource>
+					</a>
+				</div>
+				<div class="col-md-3">
+					<p class="text-right">
+						<a href="{ conf:param('request-root') }terms-of-use">
+							<xrx:i18n>
+								<xrx:key>terms-of-use</xrx:key>
+								<xrx:default>Terms of use</xrx:default>
+							</xrx:i18n>
+						</a>
+					</p>
+					<p class="text-right">
+						<a href="{ conf:param('request-root') }contact">
+							<xrx:i18n>
+								<xrx:key>contact</xrx:key>
+								<xrx:default>Contact</xrx:default>
+							</xrx:i18n>
+						</a>
+					</p>
+
+				</div>
+			</div>
+		</footer>
 
 		<script type="text/javascript"> var _gaq = _gaq || []; _gaq.push(['_setAccount',
 			'UA-3064654-1']); _gaq.push(['_trackPageview']); (function() {{ var ga =

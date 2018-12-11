@@ -51,122 +51,127 @@
   </xrx:init>
   <xrx:view>
 
-    <div class="container" id="new-dhome">
-      <div class="h2" data-demoid="09fb3343-7ae9-491a-a4f1-ed0553aa95fd">
-        <span>{ $whome:htdoc-title }  </span>
-        <xrx:auth>
-          <xrx:rules>
-            <xrx:rule>
-              <xrx:user/>
-              <xrx:role>html-author</xrx:role>
-            </xrx:rule>
-          </xrx:rules>
-          <xrx:true>
-            <a class="edit-link"
-              href="{ conf:param('request-root') }edit-htdoc/?atomid={ $whome:htdoc-atomid }">
-              <span>[</span>
-              <xrx:i18n>
-                <xrx:key>edit</xrx:key>
-                <xrx:default>Edit</xrx:default>
-              </xrx:i18n>
-              <span>]</span>
-            </a>
-          </xrx:true>
-          <xrx:false>
-            <span/>
-          </xrx:false>
-        </xrx:auth>
+    <main>
+      <div id="banner">
+        <div id="home-content" class="container-fluid">
+          <span>{ $whome:htdoc-title }  </span>
+          <xrx:auth>
+            <xrx:rules>
+              <xrx:rule>
+                <xrx:user/>
+                <xrx:role>html-author</xrx:role>
+              </xrx:rule>
+            </xrx:rules>
+            <xrx:true>
+              <a class="edit-link"
+                href="{ conf:param('request-root') }edit-htdoc/?atomid={ $whome:htdoc-atomid }">
+                <span>[</span>
+                <xrx:i18n>
+                  <xrx:key>edit</xrx:key>
+                  <xrx:default>Edit</xrx:default>
+                </xrx:i18n>
+                <span>]</span>
+              </a>
+            </xrx:true>
+            <xrx:false>
+              <span/>
+            </xrx:false>
+          </xrx:auth>
+        </div>
+        <row>
+          <div class="col-md-7">
+            <div class="box">
+              <h1>Monasterium Collaborative Archive</h1>
+            { htdoc:process($whome:htdoc-entry) } </div>
+          </div>
+
+          <div class="col-md-5">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <xrx:i18n>
+                    <xrx:key>currently-online</xrx:key>
+                    <xrx:default>Currently online</xrx:default>
+                  </xrx:i18n>
+                </h5>
+                <p>
+                  <i class="material-icons">folder_open</i>
+                  <span>{ $whome:statistics//xrx:param[@name='archives']/text() } </span>
+                  <xrx:i18n>
+                    <xrx:key>archives</xrx:key>
+                    <xrx:default>archives</xrx:default>
+                  </xrx:i18n>
+                </p>
+                <p>
+                  <i class="material-icons">folder_open</i>
+                  <span>{ $whome:statistics//xrx:param[@name='fonds']/text() } </span>
+                  <xrx:i18n>
+                    <xrx:key>fonds</xrx:key>
+                    <xrx:default>fonds</xrx:default>
+                  </xrx:i18n>
+                </p>
+                <p>
+                  <i class="material-icons">folder_open</i>
+                  <span>{ $whome:statistics//xrx:param[@name='collections']/text() } </span>
+                  <xrx:i18n>
+                    <xrx:key>collections</xrx:key>
+                    <xrx:default>collections</xrx:default>
+                  </xrx:i18n>
+                </p>
+                <p>
+                  <i class="material-icons">folder_open</i>
+                  <span>{ $whome:statistics//xrx:param[@name='charters']/text() } </span>
+                  <xrx:i18n>
+                    <xrx:key>charters</xrx:key>
+                    <xrx:default>charters</xrx:default>
+                  </xrx:i18n>
+                </p>
+                <p>
+                  <i class="material-icons">folder_open</i>
+                  <span>{ $whome:statistics//xrx:param[@name='graphics']/text() } </span>
+                  <xrx:i18n>
+                    <xrx:key>images</xrx:key>
+                    <xrx:default>images</xrx:default>
+                  </xrx:i18n>
+                </p>
+
+
+              </div>
+            </div>
+            
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <xrx:i18n>
+                    <xrx:key>new-fonds-online</xrx:key>
+                    <xrx:default>New fonds online</xrx:default>
+                  </xrx:i18n>
+                </h5>
+                
+                { for $fond in fonds:recently-published() let $fond-name :=
+                $fond//ead:did/ead:unittitle/text() let $fond-link := fond:permalink($fond) let
+                $published := replace(substring-before($fond/atom:published/text(), 'T'), '-', '/')
+                (: archive info :) let $archive-base-collection :=
+                fond:archive-base-collection($fond) let $archive-name :=
+                $archive-base-collection//eag:autform/text() return <p>
+                  <a class="nobr" href="{ $fond-link }" rel="nofollow">{
+                    if(string-length($fond-name) gt 30) then concat(substring($fond-name, 1, 30), '
+                    ...') else $fond-name }</a>
+                  <br/>
+                  <span class="small-grey nobr">{ $published } - { $archive-name }</span>
+                </p> }
+                <a href="{ conf:param('request-root') }import-charters" class="card-link"> <i class="material-icons">cloud_upload</i><xrx:i18n>
+                  <xrx:key>import-charters</xrx:key>
+                  <xrx:default>Import charters</xrx:default>
+                </xrx:i18n></a>
+                
+              </div></div>
+
+          </div>
+
+        </row>
       </div>
-      <row>
-        <div class="col-8">{ htdoc:process($whome:htdoc-entry) }
-        <p> </p>
-        </div>
-
-        <div class="col-4">
-          <span class="side-menu-heading">
-            <xrx:i18n>
-              <xrx:key>currently-online</xrx:key>
-              <xrx:default>Currently online</xrx:default>
-            </xrx:i18n>
-          </span>
-          <ul class="nostyle">
-            <li>
-              <span>{ $whome:statistics//xrx:param[@name='archives']/text() } </span>
-              <xrx:i18n>
-                <xrx:key>archives</xrx:key>
-                <xrx:default>archives</xrx:default>
-              </xrx:i18n>
-            </li>
-            <li>
-              <span>{ $whome:statistics//xrx:param[@name='fonds']/text() } </span>
-              <xrx:i18n>
-                <xrx:key>fonds</xrx:key>
-                <xrx:default>fonds</xrx:default>
-              </xrx:i18n>
-            </li>
-            <li>
-              <span>{ $whome:statistics//xrx:param[@name='collections']/text() } </span>
-              <xrx:i18n>
-                <xrx:key>collections</xrx:key>
-                <xrx:default>collections</xrx:default>
-              </xrx:i18n>
-            </li>
-            <li>
-              <span>{ $whome:statistics//xrx:param[@name='charters']/text() } </span>
-              <xrx:i18n>
-                <xrx:key>charters</xrx:key>
-                <xrx:default>charters</xrx:default>
-              </xrx:i18n>
-            </li>
-            <li>
-              <span>{ $whome:statistics//xrx:param[@name='graphics']/text() } </span>
-              <xrx:i18n>
-                <xrx:key>images</xrx:key>
-                <xrx:default>images</xrx:default>
-              </xrx:i18n>
-            </li>
-          </ul>
-        </div>
-
-        <div class="side-menu-block" data-demoid="dcbbcd46-35fb-46a9-a81c-2db81e8559aa">
-          <div class="side-menu-block-inner" data-demoid="fdb84f91-3322-4253-ad33-e9f2a66ea9b1">
-            <span class="side-menu-heading">
-              <xrx:i18n>
-                <xrx:key>new-fonds-online</xrx:key>
-                <xrx:default>New fonds online</xrx:default>
-              </xrx:i18n>
-            </span>
-            <ul class="nostyle"> { for $fond in fonds:recently-published() let $fond-name :=
-              $fond//ead:did/ead:unittitle/text() let $fond-link := fond:permalink($fond) let
-              $published := replace(substring-before($fond/atom:published/text(), 'T'), '-', '/') (:
-              archive info :) let $archive-base-collection := fond:archive-base-collection($fond)
-              let $archive-name := $archive-base-collection//eag:autform/text() return <li>
-                <a class="nobr" href="{ $fond-link }" rel="nofollow">{ if(string-length($fond-name)
-                  gt 30) then concat(substring($fond-name, 1, 30), ' ...') else $fond-name }</a>
-                <br/>
-                <span class="small-grey nobr">{ $published } - { $archive-name }</span>
-              </li> } <li> </li>
-              <li> </li>
-            </ul>
-          </div>
-        </div>
-        <div class="side-menu-block" data-demoid="48fc2652-252b-4d29-bf2a-7da9d48d8fed">
-          <div class="upload-button" data-demoid="cc5c4b3c-8ecc-4601-888a-7167c5102892">
-            <a class="button" href="{ conf:param('request-root') }import-charters">
-              <xrx:resource type="image/png"
-                >tag:www.monasterium.net,2011:/mom/resource/image/arrow-up-2-icon-16x16</xrx:resource>
-              <span> </span>
-              <xrx:i18n>
-                <xrx:key>import-charters</xrx:key>
-                <xrx:default>Import charters</xrx:default>
-              </xrx:i18n>
-              <span> &gt;&gt;</span>
-            </a>
-          </div>
-        </div>
-
-      </row>
-    </div>
+    </main>
 
   </xrx:view>
 </xrx:widget>

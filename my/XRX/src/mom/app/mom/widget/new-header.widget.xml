@@ -71,22 +71,17 @@
                             </xrx:i18n>
                         </a>
                     </xrx:true>
-                    <xrx:false> <a class="nav-link"
+                    <xrx:false>
+                        <a class="nav-link"
                             href="{ conf:param('request-root') }login2?refer={ $refer }">
                             <xrx:i18n>
                                 <xrx:key>login</xrx:key>
                                 <xrx:default>Login</xrx:default>
                             </xrx:i18n>
-                        </a> </xrx:false>
+                        </a>
+                    </xrx:false>
                 </xrx:auth>
-            </span> } </li> return <div class="container" id="header">
-                <div id="main-logo">
-                    <a class="justify-content-center" href="{ conf:param('request-root') }home">
-                    <xrx:resource alt="Monasterium Logo" type="image/jpg"
-                        >tag:www.monasterium.net,2011:/mom/resource/image/mom-logo</xrx:resource>
-                </a>
-            </div>
-            <xrx:auth>
+            </span> } </li> return <nav class="navbar navbar-expand-lg navbar-light bg-light"> <xrx:auth>
                 <xrx:rules>
                     <xrx:rule>
                         <xrx:user>{ $xrx:user-id }</xrx:user>
@@ -109,117 +104,120 @@
                 <xrx:false>
                     <span/>
                 </xrx:false>
-            </xrx:auth>
-                <nav class="navbar navbar-expand-lg">
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav justify-content-center">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{ conf:param('request-root') }home">
-                                <xrx:i18n>
-                                    <xrx:key>home</xrx:key>
-                                    <xrx:default>Home</xrx:default>
-                                </xrx:i18n>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{ conf:param('request-root') }fonds">
-                                <xrx:i18n>
-                                    <xrx:key>fonds</xrx:key>
-                                    <xrx:default>Fonds</xrx:default>
-                                </xrx:i18n>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{ conf:param('request-root') }collections">
-                                <xrx:i18n>
-                                    <xrx:key>collections</xrx:key>
-                                    <xrx:default>Collections</xrx:default>
-                                </xrx:i18n>
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="searchDropdown"
-                                href="#">
+            </xrx:auth> <a class="navbar-brand" href="#">
+                <img src="http://glossa.uni-graz.at/gamsdev/gschneider/mom/img/index.jpg"
+                    height="60" class="d-inline-block align-top" alt=""/>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"/>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{ conf:param('request-root') }home">
+                            <xrx:i18n>
+                                <xrx:key>home</xrx:key>
+                                <xrx:default>HOME</xrx:default>
+                            </xrx:i18n>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{ conf:param('request-root') }fonds">
+                            <xrx:i18n>
+                                <xrx:key>fonds</xrx:key>
+                                <xrx:default>FONDS</xrx:default>
+                            </xrx:i18n>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{ conf:param('request-root') }collections">
+                            <xrx:i18n>
+                                <xrx:key>collections</xrx:key>
+                                <xrx:default>COLLECTIONS</xrx:default>
+                            </xrx:i18n>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{ conf:param('request-root') }help">
+                            <xrx:i18n>
+                                <xrx:key>help</xrx:key>
+                                <xrx:default>HELP</xrx:default>
+                            </xrx:i18n>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{ conf:param('request-root') }my-archive">
+                            <xrx:i18n>
+                                <xrx:key>my-archive</xrx:key>
+                                <xrx:default>MYARCHIVE</xrx:default>
+                            </xrx:i18n>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <xrx:i18n>
+                                <xrx:key>search</xrx:key>
+                                <xrx:default>SEARCH</xrx:default>
+                            </xrx:i18n>
+                        </a> <div class="dropdown-menu" aria-labelledby="searchDropdown">
+                            <a class="dropdown-item" href="{ conf:param('request-root') }index">
                                 <xrx:i18n>
                                     <xrx:key>search</xrx:key>
                                     <xrx:default>Search</xrx:default>
                                 </xrx:i18n>
                             </a>
-                      
-                            <div class="dropdown-menu" aria-labelledby="searchDropdown">
-                                <a class="dropdown-item" href="{ conf:param('request-root') }index">
-                                    <xrx:i18n>
-                                        <xrx:key>search</xrx:key>
-                                        <xrx:default>Search</xrx:default>
-                                    </xrx:i18n>
-                                </a>
-                                <a class="dropdown-item" href="{ conf:param('request-root') }index">
-                                    <xrx:i18n>
-                                        <xrx:key>index</xrx:key>
-                                        <xrx:default>Index search</xrx:default>
-                                    </xrx:i18n>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{ conf:param('request-root') }help">
+                            <a class="dropdown-item" href="{ conf:param('request-root') }index">
                                 <xrx:i18n>
-                                    <xrx:key>help</xrx:key>
-                                    <xrx:default>Help</xrx:default>
+                                    <xrx:key>index</xrx:key>
+                                    <xrx:default>Index search</xrx:default>
                                 </xrx:i18n>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{ conf:param('request-root') }my-archive">
-                                <xrx:i18n>
-                                    <xrx:key>my-archive</xrx:key>
-                                    <xrx:default>MyArchive</xrx:default>
-                                </xrx:i18n>
-                            </a>
-                        </li>
-                    </ul>
-                    <!--<xrx:div>demonstrator-menu-link</xrx:div>--> { if($xrx:xformsflag) then <ul class="navbar-nav xform"  id="lang-select-form">
-                        <xf:group model="mdefault-header"> { $login-link-item } { $register-link-item
-                            } <label class="lang">
-                                <xrx:i18n>
-                                    <xrx:key>choose-a-language</xrx:key>
-                                    <xrx:default>Choose a Language</xrx:default>
-                                </xrx:i18n>
-                            </label>
-                            <xf:select1 bind="blang" incremental="true">
-                                <xf:itemset nodeset="instance('iconfigured-langs')//xrx:lang">
-                                    <xf:label ref="@name"/>
-                                    <xf:value ref="@key"/>
-                                </xf:itemset>
-                                <xf:action ev:event="xforms-value-changed">
-                                    <xf:load show="replace">
-                                        <xf:resource
-                                            value="concat('{ request:get-url() }{ xrx:request-query-string('', '') }&amp;_lang=', //xrx:lang)"
-                                        />
-                                    </xf:load>
-                                </xf:action>
-                            </xf:select1>
-                        </xf:group>
-                    </ul> else <ul class="navbar-nav"> { $login-link-item } { $register-link-item }
-                            <form class="form-inline" method="get" name="langselect-form">
-                            
-                                <label for="langSelect">
-                                    <xrx:i18n>
-                                        <xrx:key>choose-a-language</xrx:key>
-                                        <xrx:default>Choose a Language</xrx:default>
-                                    </xrx:i18n> </label>
-                                <select class="form-control" id="langSelect" name="_lang"
-                                    onchange="this.langselect-form.submit();"> { for $language in
-                                    conf:param('languages')//xrx:lang let $lang-name :=
-                                    data($language/@name) let $lang-key := $language/@key/string()
-                                    return element option { attribute value { $lang-key },
-                                    if($lang-key = xs:string($xrx:lang)) then attribute selected
-                                    {'selected'} else (), text { $lang-name } } } </select> { for
-                                $param in request:get-parameter-names() return
-                                if(not(starts-with($param, '_'))) then <input name="{ $param }"
-                                    type="hidden" value="{ request:get-parameter($param, ()) }"/>
-                                else() } 
-                        </form></ul> } </div>
-            </nav>
-        </div> } </xrx:view>
+                        </div>
+                    </li>  
+                </ul>
+                <!--<xrx:div>demonstrator-menu-link</xrx:div>--> { if($xrx:xformsflag) then <ul
+                    class="navbar-nav ml-auto xform" id="lang-select-form">
+                    <xf:group model="mdefault-header"> { $login-link-item } { $register-link-item }
+                            <label class="lang">
+                            <xrx:i18n>
+                                <xrx:key>choose-a-language</xrx:key>
+                                <xrx:default>Choose a Language</xrx:default>
+                            </xrx:i18n>
+                        </label>
+                        <xf:select1 bind="blang" incremental="true">
+                            <xf:itemset nodeset="instance('iconfigured-langs')//xrx:lang">
+                                <xf:label ref="@name"/>
+                                <xf:value ref="@key"/>
+                            </xf:itemset>
+                            <xf:action ev:event="xforms-value-changed">
+                                <xf:load show="replace">
+                                    <xf:resource
+                                        value="concat('{ request:get-url() }{ xrx:request-query-string('', '') }&amp;_lang=', //xrx:lang)"
+                                    />
+                                </xf:load>
+                            </xf:action>
+                        </xf:select1>
+                    </xf:group>
+                </ul> else <ul class="navbar-nav ml-auto"> { $login-link-item } { $register-link-item }
+                        <form class="form-inline" method="get" name="langselect-form">
+                        <label for="langSelect">
+                            <xrx:i18n>
+                                <xrx:key>choose-a-language</xrx:key>
+                                <xrx:default>Choose a Language</xrx:default>
+                            </xrx:i18n>
+                        </label>
+                        <select class="form-control" id="langSelect" name="_lang"
+                            onchange="this.langselect-form.submit();"> { for $language in
+                            conf:param('languages')//xrx:lang let $lang-name :=
+                            data($language/@name) let $lang-key := $language/@key/string() return
+                            element option { attribute value { $lang-key }, if($lang-key =
+                            xs:string($xrx:lang)) then attribute selected {'selected'} else (), text
+                            { $lang-name } } } </select> { for $param in
+                        request:get-parameter-names() return if(not(starts-with($param, '_'))) then
+                            <input name="{ $param }" type="hidden"
+                            value="{ request:get-parameter($param, ()) }"/> else() } </form></ul> }
+            </div>
+        </nav> } </xrx:view>
 </xrx:widget>

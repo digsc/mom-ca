@@ -148,7 +148,7 @@ it leaves the active development stage.
         <xrx:variable>
       <xrx:name>$wcharter:backwhereicamefrom</xrx:name><!-- das ist problematisch weil ich auch in search2 ev search diese var setzen muss -->
       <xrx:expression>if(contains(session:get-attribute('whereami'), 'index')) then session:get-attribute('whereami')
-      else(concat(conf:param('request-root'), 'search2', $wsearch-result:query-string))</xrx:expression>
+      else(concat(conf:param('request-root'), 'search', $wsearch-result:query-string))</xrx:expression>
     </xrx:variable>
     <xrx:variable>
     <xrx:name>$wcharter:previous</xrx:name>
@@ -391,7 +391,7 @@ it leaves the active development stage.
 	          <span> &gt; </span>
 	          <a href="{ concat(conf:param('request-root'), $archid, '/', $fondid, '/fond') }">{ $fondid }</a>
 	          <span> &gt; </span>
-	          <a href="{ request:get-url() }?{ request:get-query-string() }">{ $wcharter:idno }</a>
+	          <a href="{ concat(conf:param('request-root'), $archid, '/', $fondid, '/', $wcharter:idno, '/charter' ) }">{ $wcharter:idno }</a>
 	        </div>
 	        else
 	        let $collectionid := charter:collectionid($wcharter:atom-id)
@@ -413,7 +413,7 @@ it leaves the active development stage.
 	          <span> &gt; </span>
 	          <a href="{ concat(conf:param('request-root'), $collectionid, '/collection') }">{ $collectionid }</a>
 	          <span> &gt; </span>
-	          <a href="{ request:get-url() }?{ request:get-query-string() }">{ $wcharter:idno }</a>
+	          <a href="{ concat(conf:param('request-root'), $collectionid,'/', $wcharter:idno, '/charter') }">{ $wcharter:idno }</a>
 	        </div>
 	        }  
         </div>

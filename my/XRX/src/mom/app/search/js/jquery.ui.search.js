@@ -28,6 +28,7 @@ $.widget("ui.search", {
     this._initFilter();
     this._initContext();
     this._initTrigger();
+  
   },
 
 
@@ -129,9 +130,8 @@ $.widget("ui.search", {
     $(selCheckbox_, "#categories-result").each(function() {
       if (this.checked) str.push($(this).attr('name'));
     });
+    $("#categories-search").val(str.join(","));
 
-    $("#categories-search").val(str.join(","));    
-    
     // select and deselect search categories
     $(selCheckbox_, "#categories-result").change(function() {
       var str = [];
@@ -163,13 +163,14 @@ $.widget("ui.search", {
   },
 
 
-  _initContext: function() {
-    var str = [];
+  _initContext: function() {	
+    var str = [];   
+
     $(selCheckbox_, "#context-result").each(function() {
       if (this.checked) str.push($(this).attr('name'));
     });
 
-    $("#context-search").val(str.join(","));    
+    $("#context-search").val(str.join(","));
     
     // select and deselect archives / collections
     $(selCheckbox_, "#context-result").change(function() {
@@ -177,8 +178,8 @@ $.widget("ui.search", {
       $(selCheckbox_, "#context-result").each(function() {
         if (this.checked) str.push($(this).attr('name'));
       });
-
-      $("#context-search").val(str.join(","));
+   
+      $("#context-search").val(str.join(",")); 
     });
   },
 

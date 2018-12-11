@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><xrx:widget xmlns:xrx="http://www.monasterium.net/NS/xrx" xmlns="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xf="http://www.w3.org/2002/xforms">
+  <xrx:id>tag:www.monasterium.net,2011:/mom/widget/geomap</xrx:id>
+  <xrx:title>
+    <xrx:i18n>
+      <xrx:key/>
+      <xrx:default/>
+    </xrx:i18n>
+  </xrx:title>
+  <xrx:subtitle/>
+    <xrx:description>Subwidget to create a map</xrx:description>
+  <xrx:author>JBigalke@smail.uni-koeln.de</xrx:author>
+  <xrx:licence>
+This is a component file of the VdU Software for a Virtual Research Environment for the handling of Medieval charters.
+
+As the source code is available here, it is somewhere between an alpha- and a beta-release, may be changed without any consideration of backward compatibility of other parts of the system, therefore, without any notice.
+
+This file is part of the VdU Virtual Research Environment Toolkit (VdU/VRET).
+
+The VdU/VRET is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+VdU/VRET is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with VdU/VRET.  If not, see http://www.gnu.org/licenses.
+
+We expect VdU/VRET to be distributed in the future with a license more lenient towards the inclusion of components into other systems, once it leaves the active development stage.
+  </xrx:licence>
+    <xrx:constructor>
+        <!--Required part -->
+        <!--Name of the service to get the locations -->
+	    <xrx:parameter>
+	    	<xrx:name>$serviceName</xrx:name>
+	    	<xrx:default>()</xrx:default>
+	    </xrx:parameter>
+        <!-- Link to the img for the markers  -->
+	    <xrx:parameter>
+	    	<xrx:name>$imagelink</xrx:name>   
+	    	<xrx:default>()</xrx:default>
+	    </xrx:parameter>
+        <!--mode of the map at this moment the mode: archive and collection exists -->
+        <xrx:parameter>
+            <xrx:name>$mode</xrx:name>
+            <xrx:default>()</xrx:default>
+        </xrx:parameter>
+        <!--path to the collection with the geoinformations -->
+        <xrx:parameter>
+            <xrx:name>$collection-path</xrx:name>
+            <xrx:default>()</xrx:default>
+        </xrx:parameter>
+        <!--optional part -->
+        <xrx:parameter>
+            <xrx:name>$linklabel</xrx:name>
+            <xrx:default>()</xrx:default>
+        </xrx:parameter>
+        <!--lat/lng to center map at start -->
+        <xrx:parameter>
+            <xrx:name>$latlng</xrx:name>
+            <xrx:default>()</xrx:default>
+        </xrx:parameter>
+        <!-- zoom for map at start -->
+        <xrx:parameter>
+            <xrx:name>$zoom</xrx:name>
+            <xrx:default>()</xrx:default>
+        </xrx:parameter>
+    </xrx:constructor>
+    <xrx:variables>
+        <xrx:variable>
+            <xrx:name>$lat</xrx:name>
+            <xrx:expression>tokenize($latlng,';')[1]</xrx:expression>
+        </xrx:variable>
+        <xrx:variable>
+            <xrx:name>$lng</xrx:name>
+            <xrx:expression>tokenize($latlng, ';')[2]</xrx:expression>
+        </xrx:variable>
+    </xrx:variables>
+    <xrx:csss>
+     <xrx:resource>tag:www.monasterium.net,2011:/xrx/resource/css/leaflet</xrx:resource> 
+     <xrx:resource>tag:www.monasterium.net,2011:/xrx/resource/css/leaflet-marker-cluster</xrx:resource>
+  	<xrx:resource>tag:www.monasterium.net,2011:/xrx/resource/css/leaflet-marker-cluster-default</xrx:resource>
+
+  	<xrx:css>tag:www.monasterium.net,2011:/mom/css/geoMarkerCluster</xrx:css>
+  	<style>
+
+  	 #map{{
+		width: 800px;
+		height: 500px;
+	    }}
+
+        .loader{{
+        position: absolute;
+        top: 85px;
+        z-index: 1000;
+        width: 800px;
+        text-align: center;
+        padding: 240px 0;
+        background-color: rgba(0,0,0,0.2);
+        }}
+
+        .inactive{{
+            display: none;
+        }}
+
+        .active{{
+            display: block;
+        }}
+  	</style>
+  </xrx:csss>
+    <xrx:jss>
+    <xrx:resource>tag:www.monasterium.net,2011:/xrx/resource/jquery/jquery</xrx:resource>
+    <xrx:resource>tag:www.monasterium.net,2011:/xrx/resource/jquery/ui/core</xrx:resource>
+    <xrx:resource>tag:www.monasterium.net,2011:/xrx/resource/jquery/ui/widget</xrx:resource> 
+    <xrx:resource>tag:www.monasterium.net,2011:/xrx/resource/js/leaflet</xrx:resource> 
+  	<xrx:resource>tag:www.monasterium.net,2011:/xrx/resource/js/leaflet-marker-cluster</xrx:resource>
+    <xrx:resource>tag:www.monasterium.net,2011:/mom/resource/js/GeoTool</xrx:resource>
+  </xrx:jss>
+
+      <xrx:view>
+          <div id="mapbox">
+   		<div id="map"></div>
+            <div class="loader inactive">Loading Map Please Wait</div>
+          </div>
+		<script type="text/javascript">$(document).ready(function(){{$("#map").GeoTool({{requestroot:"{conf:param('request-root')}", serviceLink: "{conf:param('request-root')}service/{$serviceName}", imageLink: "{$imagelink}", mode: "{$mode}", collection: "{$collection-path}", linklabel: "{$linklabel}", lat: "{xs:float($lat)}", lng: "{xs:float($lng)}", zoom:"{xs:integer($zoom)}"}});}});</script>
+  </xrx:view>
+</xrx:widget>
